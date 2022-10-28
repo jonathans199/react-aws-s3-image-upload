@@ -2,17 +2,16 @@ import { useState } from 'react'
 import './App.css'
 import AWS from 'aws-sdk'
 
-const S3_BUCKET = process.env.REACT_APP_S3_BUCKET
-const REGION = 'us-east-2'
-
 AWS.config.update({
   accessKeyId: process.env.REACT_APP_AWS_KEY,
   secretAccessKey: process.env.REACT_APP_AWS_SECRET_KEY,
 })
 
+console.log(process.env.REACT_APP_AWS_KEY, process.env.REACT_APP_S3_BUCKET, process.env.REACT_APP_AWS_SECRET_KEY)
+
 const myBucket = new AWS.S3({
-  params: { Bucket: S3_BUCKET },
-  region: REGION,
+  params: { Bucket: process.env.REACT_APP_S3_BUCKET },
+  region: 'us-east-2',
 })
 
 function App() {
@@ -27,7 +26,7 @@ function App() {
     const params = {
       ACL: 'public-read',
       Body: file,
-      Bucket: S3_BUCKET,
+      Bucket: process.env.S3_BUCKET,
       ContentType: file.type,
       Key: file.name,
     }

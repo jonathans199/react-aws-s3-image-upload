@@ -7,8 +7,6 @@ AWS.config.update({
   secretAccessKey: process.env.REACT_APP_AWS_SECRET_KEY,
 })
 
-console.log(process.env.REACT_APP_AWS_KEY, process.env.REACT_APP_S3_BUCKET, process.env.REACT_APP_AWS_SECRET_KEY)
-
 const myBucket = new AWS.S3({
   params: { Bucket: process.env.REACT_APP_S3_BUCKET },
   region: 'us-east-2',
